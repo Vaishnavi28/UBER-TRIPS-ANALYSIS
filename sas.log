@@ -1,0 +1,641 @@
+NOTE: Copyright (c) 2002-2012 by SAS Institute Inc., Cary, NC, USA.
+NOTE: SAS (r) Proprietary Software 9.4 (TS1M3)
+      Licensed to CALIFORNIA STATE UNIVERSITY EAST BAY - SFA - T&R, Site 70141476.
+NOTE: This session is executing on the X64_8HOME  platform.
+
+
+
+NOTE: Updated analytical products:
+
+      SAS/STAT 14.1
+      SAS/ETS 14.1
+      SAS/OR 14.1
+      SAS/IML 14.1
+      SAS/QC 14.1
+
+WARNING: Your system is scheduled to expire on January 5, 2017, which is 24 days from now. The SAS
+         System will no longer function on or after that date. Please contact your SAS Installation
+         Representative to obtain your updated SAS Installation Data (SID) file, which includes
+         SETINIT information.
+To locate the name of your SAS Installation Representative go to http://support.sas.com/repfinder and
+provide your site number 70141476 and company name as CALIFORNIA STATE UNIVERSITY EAST BAY - SFA -
+T&R. On the SAS REP list provided, locate the REP for operating system Windows.
+NOTE: Additional host information:
+
+ X64_8HOME WIN 6.2.9200  Workstation
+
+NOTE: SAS initialization used:
+      real time           1.05 seconds
+      cpu time            1.01 seconds
+
+WARNING: The Base SAS Software product with which RESULTS is associated will be expiring soon, and is
+WARNING: currently in warning mode to indicate this upcoming expiration. Please run PROC SETINIT to
+WARNING: obtain more information on your warning period.
+1    Proc import DATAFILE="C:\Users\vaish\Documents\My SAS Files\9.4\uber-raw-data-janjune-15.csv"
+1  ! OUT=UBER_DATA
+2    dbms=csv
+3    replace;
+4    run;
+
+5     /**********************************************************************
+6     *   PRODUCT:   SAS
+7     *   VERSION:   9.4
+8     *   CREATOR:   External File Interface
+9     *   DATE:      12DEC16
+10    *   DESC:      Generated SAS Datastep Code
+11    *   TEMPLATE SOURCE:  (None Specified.)
+12    ***********************************************************************/
+13       data WORK.UBER_DATA    ;
+14       %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+15       infile 'C:\Users\vaish\Documents\My SAS Files\9.4\uber-raw-data-janjune-15.csv' delimiter =
+15 ! ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+16          informat Dispatching_base_num $6. ;
+17          informat Pickup_date anydtdtm40. ;
+18          informat Affiliated_base_num $6. ;
+19          informat locationID best32. ;
+20          format Dispatching_base_num $6. ;
+21          format Pickup_date datetime. ;
+22          format Affiliated_base_num $6. ;
+23          format locationID best12. ;
+24       input
+25                   Dispatching_base_num $
+26                   Pickup_date
+27                   Affiliated_base_num $
+28                   locationID
+29       ;
+30       if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+31       run;
+
+NOTE: The infile 'C:\Users\vaish\Documents\My SAS Files\9.4\uber-raw-data-janjune-15.csv' is:
+      Filename=C:\Users\vaish\Documents\My SAS Files\9.4\uber-raw-data-janjune-15.csv,
+      RECFM=V,LRECL=32767,
+      File Size (bytes)=551672691,
+      Last Modified=10Dec2016:15:45:46,
+      Create Time=13Nov2016:19:30:28
+
+NOTE: 14270479 records were read from the infile 'C:\Users\vaish\Documents\My SAS
+      Files\9.4\uber-raw-data-janjune-15.csv'.
+      The minimum record length was 29.
+      The maximum record length was 37.
+NOTE: The data set WORK.UBER_DATA has 14270479 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           42.15 seconds
+      cpu time            43.71 seconds
+
+
+14270479 rows created in WORK.UBER_DATA from C:\Users\vaish\Documents\My SAS
+Files\9.4\uber-raw-data-janjune-15.csv.
+
+
+
+NOTE: WORK.UBER_DATA data set was successfully created.
+NOTE: The data set WORK.UBER_DATA has 14270479 observations and 4 variables.
+NOTE: PROCEDURE IMPORT used (Total process time):
+      real time           42.50 seconds
+      cpu time            44.06 seconds
+
+
+32
+33   Proc import DATAFILE="C:\Users\vaish\Documents\My SAS
+33 ! Files\9.4\other-FHV-services_jan-aug-2015.csv" OUT=OTHER_FHV_DATA
+34   dbms=csv
+35   replace;
+36   run;
+
+37    /**********************************************************************
+38    *   PRODUCT:   SAS
+39    *   VERSION:   9.4
+40    *   CREATOR:   External File Interface
+41    *   DATE:      12DEC16
+42    *   DESC:      Generated SAS Datastep Code
+43    *   TEMPLATE SOURCE:  (None Specified.)
+44    ***********************************************************************/
+45       data WORK.OTHER_FHV_DATA    ;
+46       %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+47       infile 'C:\Users\vaish\Documents\My SAS Files\9.4\other-FHV-services_jan-aug-2015.csv'
+47 ! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+48          informat Base_Number $6. ;
+49          informat Base_Name $35. ;
+50          informat Pick_Up_Date mmddyy10. ;
+51          informat Number_of_Trips best32. ;
+52          informat Number_of_Vehicles best32. ;
+53          informat MONTH $3. ;
+54          format Base_Number $6. ;
+55          format Base_Name $35. ;
+56          format Pick_Up_Date mmddyy10. ;
+57          format Number_of_Trips best12. ;
+58          format Number_of_Vehicles best12. ;
+59          format MONTH $3. ;
+60       input
+61                   Base_Number $
+62                   Base_Name $
+63                   Pick_Up_Date
+64                   Number_of_Trips
+65                   Number_of_Vehicles
+66                   MONTH $
+67       ;
+68       if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+69       run;
+
+NOTE: The infile 'C:\Users\vaish\Documents\My SAS Files\9.4\other-FHV-services_jan-aug-2015.csv' is:
+      Filename=C:\Users\vaish\Documents\My SAS Files\9.4\other-FHV-services_jan-aug-2015.csv,
+      RECFM=V,LRECL=32767,File Size (bytes)=1382366,
+      Last Modified=12Dec2016:13:16:12,
+      Create Time=13Nov2016:19:30:28
+
+NOTE: Invalid data for Number_of_Vehicles in line 98 50-51.
+RULE:     ----+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+----9--
+98        B01848,GRAND LIMO & CAR SERVICE INC.,1/2/2015,11, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/02/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=97
+NOTE: Invalid data for Number_of_Vehicles in line 159 50-51.
+159       B01848,GRAND LIMO & CAR SERVICE INC.,1/3/2015,10, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/03/2015 Number_of_Trips=10
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=158
+NOTE: Invalid data for Number_of_Vehicles in line 217 50-51.
+217       B01848,GRAND LIMO & CAR SERVICE INC.,1/4/2015,11, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/04/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=216
+NOTE: Invalid data for Number_of_Vehicles in line 276 49-50.
+276       B01848,GRAND LIMO & CAR SERVICE INC.,1/5/2015,8, -   ,JAN 57
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/05/2015 Number_of_Trips=8
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=275
+NOTE: Invalid data for Number_of_Vehicles in line 336 49-50.
+336       B01848,GRAND LIMO & CAR SERVICE INC.,1/6/2015,9, -   ,JAN 57
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/06/2015 Number_of_Trips=9
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=335
+NOTE: Invalid data for Number_of_Vehicles in line 396 49-50.
+396       B01848,GRAND LIMO & CAR SERVICE INC.,1/7/2015,9, -   ,JAN 57
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/07/2015 Number_of_Trips=9
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=395
+NOTE: Invalid data for Number_of_Vehicles in line 456 49-50.
+456       B01848,GRAND LIMO & CAR SERVICE INC.,1/8/2015,7, -   ,JAN 57
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/08/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=455
+NOTE: Invalid data for Number_of_Vehicles in line 515 50-51.
+515       B01848,GRAND LIMO & CAR SERVICE INC.,1/9/2015,11, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/09/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=514
+NOTE: Invalid data for Number_of_Vehicles in line 575 50-51.
+575       B01848,GRAND LIMO & CAR SERVICE INC.,1/10/2015,8, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/10/2015 Number_of_Trips=8
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=574
+NOTE: Invalid data for Number_of_Vehicles in line 633 50-51.
+633       B01848,GRAND LIMO & CAR SERVICE INC.,1/11/2015,9, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/11/2015 Number_of_Trips=9
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=632
+NOTE: Invalid data for Number_of_Vehicles in line 692 50-51.
+692       B01848,GRAND LIMO & CAR SERVICE INC.,1/12/2015,7, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/12/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=691
+NOTE: Invalid data for Number_of_Vehicles in line 752 50-51.
+752       B01848,GRAND LIMO & CAR SERVICE INC.,1/13/2015,7, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/13/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=751
+NOTE: Invalid data for Number_of_Vehicles in line 812 50-51.
+812       B01848,GRAND LIMO & CAR SERVICE INC.,1/14/2015,6, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/14/2015 Number_of_Trips=6
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=811
+NOTE: Invalid data for Number_of_Vehicles in line 872 50-51.
+872       B01848,GRAND LIMO & CAR SERVICE INC.,1/15/2015,7, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/15/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=871
+NOTE: Invalid data for Number_of_Vehicles in line 932 50-51.
+932       B01848,GRAND LIMO & CAR SERVICE INC.,1/16/2015,8, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/16/2015 Number_of_Trips=8
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=931
+NOTE: Invalid data for Number_of_Vehicles in line 991 50-51.
+991       B01848,GRAND LIMO & CAR SERVICE INC.,1/17/2015,6, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/17/2015 Number_of_Trips=6
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=990
+NOTE: Invalid data for Number_of_Vehicles in line 1048 50-51.
+1048      B01848,GRAND LIMO & CAR SERVICE INC.,1/18/2015,5, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/18/2015 Number_of_Trips=5
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=1047
+NOTE: Invalid data for Number_of_Vehicles in line 1106 50-51.
+1106      B01848,GRAND LIMO & CAR SERVICE INC.,1/19/2015,7, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/19/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=1105
+NOTE: Invalid data for Number_of_Vehicles in line 1166 51-52.
+1166      B01848,GRAND LIMO & CAR SERVICE INC.,1/20/2015,11, -   ,JAN 59
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/20/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=1165
+NOTE: Invalid data for Number_of_Vehicles in line 1226 51-52.
+WARNING: Limit set by ERRORS= option reached.  Further errors of this type will not be printed.
+1226      B01848,GRAND LIMO & CAR SERVICE INC.,1/21/2015,11, -   ,JAN 59
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/21/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=1225
+NOTE: 26181 records were read from the infile 'C:\Users\vaish\Documents\My SAS
+      Files\9.4\other-FHV-services_jan-aug-2015.csv'.
+      The minimum record length was 34.
+      The maximum record length was 82.
+NOTE: The data set WORK.OTHER_FHV_DATA has 26181 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.25 seconds
+      cpu time            0.25 seconds
+
+
+Errors detected in submitted DATA step. Examine log.
+26181 rows created in WORK.OTHER_FHV_DATA from C:\Users\vaish\Documents\My SAS
+Files\9.4\other-FHV-services_jan-aug-2015.csv.
+
+
+
+ERROR: Import unsuccessful.  See SAS Log for details.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: PROCEDURE IMPORT used (Total process time):
+      real time           0.42 seconds
+      cpu time            0.40 seconds
+
+
+
+70   Proc import DATAFILE="C:\Users\vaish\Documents\My SAS Files\9.4\uber-raw-data-janjune-15.csv"
+70 ! OUT=UBER_DATA
+71   dbms=csv
+72   replace;
+73   run;
+
+74    /**********************************************************************
+75    *   PRODUCT:   SAS
+76    *   VERSION:   9.4
+77    *   CREATOR:   External File Interface
+78    *   DATE:      12DEC16
+79    *   DESC:      Generated SAS Datastep Code
+80    *   TEMPLATE SOURCE:  (None Specified.)
+81    ***********************************************************************/
+82       data WORK.UBER_DATA    ;
+83       %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+84       infile 'C:\Users\vaish\Documents\My SAS Files\9.4\uber-raw-data-janjune-15.csv' delimiter =
+84 ! ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+85          informat Dispatching_base_num $6. ;
+86          informat Pickup_date anydtdtm40. ;
+87          informat Affiliated_base_num $6. ;
+88          informat locationID best32. ;
+89          format Dispatching_base_num $6. ;
+90          format Pickup_date datetime. ;
+91          format Affiliated_base_num $6. ;
+92          format locationID best12. ;
+93       input
+94                   Dispatching_base_num $
+95                   Pickup_date
+96                   Affiliated_base_num $
+97                   locationID
+98       ;
+99       if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+100      run;
+
+NOTE: The infile 'C:\Users\vaish\Documents\My SAS Files\9.4\uber-raw-data-janjune-15.csv' is:
+      Filename=C:\Users\vaish\Documents\My SAS Files\9.4\uber-raw-data-janjune-15.csv,
+      RECFM=V,LRECL=32767,
+      File Size (bytes)=551672691,
+      Last Modified=10Dec2016:15:45:46,
+      Create Time=13Nov2016:19:30:28
+
+NOTE: 14270479 records were read from the infile 'C:\Users\vaish\Documents\My SAS
+      Files\9.4\uber-raw-data-janjune-15.csv'.
+      The minimum record length was 29.
+      The maximum record length was 37.
+NOTE: The data set WORK.UBER_DATA has 14270479 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           39.72 seconds
+      cpu time            39.61 seconds
+
+
+14270479 rows created in WORK.UBER_DATA from C:\Users\vaish\Documents\My SAS
+Files\9.4\uber-raw-data-janjune-15.csv.
+
+
+
+NOTE: WORK.UBER_DATA data set was successfully created.
+NOTE: The data set WORK.UBER_DATA has 14270479 observations and 4 variables.
+NOTE: PROCEDURE IMPORT used (Total process time):
+      real time           40.23 seconds
+      cpu time            40.12 seconds
+
+
+101
+102  Proc import DATAFILE="C:\Users\vaish\Documents\My SAS
+102! Files\9.4\other-FHV-services_jan-aug-2015.csv" OUT=OTHER_FHV_DATA
+103  dbms=csv
+104  replace;
+105  run;
+
+106   /**********************************************************************
+107   *   PRODUCT:   SAS
+108   *   VERSION:   9.4
+109   *   CREATOR:   External File Interface
+110   *   DATE:      12DEC16
+111   *   DESC:      Generated SAS Datastep Code
+112   *   TEMPLATE SOURCE:  (None Specified.)
+113   ***********************************************************************/
+114      data WORK.OTHER_FHV_DATA    ;
+115      %let _EFIERR_ = 0; /* set the ERROR detection macro variable */
+116      infile 'C:\Users\vaish\Documents\My SAS Files\9.4\other-FHV-services_jan-aug-2015.csv'
+116! delimiter = ',' MISSOVER DSD lrecl=32767 firstobs=2 ;
+117         informat Base_Number $6. ;
+118         informat Base_Name $35. ;
+119         informat Pick_Up_Date mmddyy10. ;
+120         informat Number_of_Trips best32. ;
+121         informat Number_of_Vehicles best32. ;
+122         informat MONTH $3. ;
+123         format Base_Number $6. ;
+124         format Base_Name $35. ;
+125         format Pick_Up_Date mmddyy10. ;
+126         format Number_of_Trips best12. ;
+127         format Number_of_Vehicles best12. ;
+128         format MONTH $3. ;
+129      input
+130                  Base_Number $
+131                  Base_Name $
+132                  Pick_Up_Date
+133                  Number_of_Trips
+134                  Number_of_Vehicles
+135                  MONTH $
+136      ;
+137      if _ERROR_ then call symputx('_EFIERR_',1);  /* set ERROR detection macro variable */
+138      run;
+
+NOTE: The infile 'C:\Users\vaish\Documents\My SAS Files\9.4\other-FHV-services_jan-aug-2015.csv' is:
+      Filename=C:\Users\vaish\Documents\My SAS Files\9.4\other-FHV-services_jan-aug-2015.csv,
+      RECFM=V,LRECL=32767,File Size (bytes)=1382366,
+      Last Modified=12Dec2016:13:16:12,
+      Create Time=13Nov2016:19:30:28
+
+NOTE: Invalid data for Number_of_Vehicles in line 98 50-51.
+RULE:     ----+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+----9--
+98        B01848,GRAND LIMO & CAR SERVICE INC.,1/2/2015,11, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/02/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=97
+NOTE: Invalid data for Number_of_Vehicles in line 159 50-51.
+159       B01848,GRAND LIMO & CAR SERVICE INC.,1/3/2015,10, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/03/2015 Number_of_Trips=10
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=158
+NOTE: Invalid data for Number_of_Vehicles in line 217 50-51.
+217       B01848,GRAND LIMO & CAR SERVICE INC.,1/4/2015,11, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/04/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=216
+NOTE: Invalid data for Number_of_Vehicles in line 276 49-50.
+276       B01848,GRAND LIMO & CAR SERVICE INC.,1/5/2015,8, -   ,JAN 57
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/05/2015 Number_of_Trips=8
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=275
+NOTE: Invalid data for Number_of_Vehicles in line 336 49-50.
+336       B01848,GRAND LIMO & CAR SERVICE INC.,1/6/2015,9, -   ,JAN 57
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/06/2015 Number_of_Trips=9
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=335
+NOTE: Invalid data for Number_of_Vehicles in line 396 49-50.
+396       B01848,GRAND LIMO & CAR SERVICE INC.,1/7/2015,9, -   ,JAN 57
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/07/2015 Number_of_Trips=9
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=395
+NOTE: Invalid data for Number_of_Vehicles in line 456 49-50.
+RULE:     ----+----1----+----2----+----3----+----4----+----5----+----6----+----7----+----8----+----9--
+456       B01848,GRAND LIMO & CAR SERVICE INC.,1/8/2015,7, -   ,JAN 57
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/08/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=455
+NOTE: Invalid data for Number_of_Vehicles in line 515 50-51.
+515       B01848,GRAND LIMO & CAR SERVICE INC.,1/9/2015,11, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/09/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=514
+NOTE: Invalid data for Number_of_Vehicles in line 575 50-51.
+575       B01848,GRAND LIMO & CAR SERVICE INC.,1/10/2015,8, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/10/2015 Number_of_Trips=8
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=574
+NOTE: Invalid data for Number_of_Vehicles in line 633 50-51.
+633       B01848,GRAND LIMO & CAR SERVICE INC.,1/11/2015,9, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/11/2015 Number_of_Trips=9
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=632
+NOTE: Invalid data for Number_of_Vehicles in line 692 50-51.
+692       B01848,GRAND LIMO & CAR SERVICE INC.,1/12/2015,7, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/12/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=691
+NOTE: Invalid data for Number_of_Vehicles in line 752 50-51.
+752       B01848,GRAND LIMO & CAR SERVICE INC.,1/13/2015,7, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/13/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=751
+NOTE: Invalid data for Number_of_Vehicles in line 812 50-51.
+812       B01848,GRAND LIMO & CAR SERVICE INC.,1/14/2015,6, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/14/2015 Number_of_Trips=6
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=811
+NOTE: Invalid data for Number_of_Vehicles in line 872 50-51.
+872       B01848,GRAND LIMO & CAR SERVICE INC.,1/15/2015,7, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/15/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=871
+NOTE: Invalid data for Number_of_Vehicles in line 932 50-51.
+932       B01848,GRAND LIMO & CAR SERVICE INC.,1/16/2015,8, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/16/2015 Number_of_Trips=8
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=931
+NOTE: Invalid data for Number_of_Vehicles in line 991 50-51.
+991       B01848,GRAND LIMO & CAR SERVICE INC.,1/17/2015,6, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/17/2015 Number_of_Trips=6
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=990
+NOTE: Invalid data for Number_of_Vehicles in line 1048 50-51.
+1048      B01848,GRAND LIMO & CAR SERVICE INC.,1/18/2015,5, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/18/2015 Number_of_Trips=5
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=1047
+NOTE: Invalid data for Number_of_Vehicles in line 1106 50-51.
+1106      B01848,GRAND LIMO & CAR SERVICE INC.,1/19/2015,7, -   ,JAN 58
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/19/2015 Number_of_Trips=7
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=1105
+NOTE: Invalid data for Number_of_Vehicles in line 1166 51-52.
+1166      B01848,GRAND LIMO & CAR SERVICE INC.,1/20/2015,11, -   ,JAN 59
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/20/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=1165
+NOTE: Invalid data for Number_of_Vehicles in line 1226 51-52.
+WARNING: Limit set by ERRORS= option reached.  Further errors of this type will not be printed.
+1226      B01848,GRAND LIMO & CAR SERVICE INC.,1/21/2015,11, -   ,JAN 59
+Base_Number=B01848 Base_Name=GRAND LIMO & CAR SERVICE INC. Pick_Up_Date=01/21/2015 Number_of_Trips=11
+Number_of_Vehicles=. MONTH=JAN _ERROR_=1 _N_=1225
+NOTE: 26181 records were read from the infile 'C:\Users\vaish\Documents\My SAS
+      Files\9.4\other-FHV-services_jan-aug-2015.csv'.
+      The minimum record length was 34.
+      The maximum record length was 82.
+NOTE: The data set WORK.OTHER_FHV_DATA has 26181 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.22 seconds
+      cpu time            0.21 seconds
+
+
+Errors detected in submitted DATA step. Examine log.
+26181 rows created in WORK.OTHER_FHV_DATA from C:\Users\vaish\Documents\My SAS
+Files\9.4\other-FHV-services_jan-aug-2015.csv.
+
+
+
+ERROR: Import unsuccessful.  See SAS Log for details.
+NOTE: The SAS System stopped processing this step because of errors.
+NOTE: PROCEDURE IMPORT used (Total process time):
+      real time           0.43 seconds
+      cpu time            0.37 seconds
+
+139  /*USING MACROS*/
+140  %LET TRIPS=NUMBER_OF_TRIPS;
+141  %LET VEHICLES=NUMBER_OF_VEHICLES;
+142  %LET BASE_NO=Dispatching_base_num;
+143  %LET LOC=locationID;
+144
+145  TITLE "PROC CONTENTS FOR UBER DATA";
+
+
+146  proc contents data=UBER_DATA;
+NOTE: Writing HTML Body file: sashtml.htm
+147  run;
+
+NOTE: PROCEDURE CONTENTS used (Total process time):
+      real time           0.88 seconds
+      cpu time            0.68 seconds
+
+
+148
+149  Title "PROC CONTENTS for OTHER FHV DATA";
+150  proc contents data=OTHER_FHV_DATA;
+151  RUN;
+
+NOTE: PROCEDURE CONTENTS used (Total process time):
+      real time           0.03 seconds
+      cpu time            0.01 seconds
+
+
+152
+153  /*REMOVING MISSING VALUES*/
+154  data OTHER_FHV_DATA;
+155  set OTHER_FHV_DATA;
+156  if cmiss(of _all_) then delete;
+157  run;
+
+NOTE: There were 26181 observations read from the data set WORK.OTHER_FHV_DATA.
+NOTE: The data set WORK.OTHER_FHV_DATA has 24465 observations and 6 variables.
+NOTE: DATA statement used (Total process time):
+      real time           0.04 seconds
+      cpu time            0.04 seconds
+
+
+158  /*REMOVING MISSING VALUES*/
+159  data UBER_DATA;
+160  set UBER_DATA;
+161  if cmiss(of _all_) then delete;
+162  run;
+
+NOTE: There were 14270479 observations read from the data set WORK.UBER_DATA.
+NOTE: The data set WORK.UBER_DATA has 14108284 observations and 4 variables.
+NOTE: DATA statement used (Total process time):
+      real time           4.28 seconds
+      cpu time            4.06 seconds
+
+
+163
+164  TITLE "NO OF VEHICLES & TRIPS FOR EACH BASE NAME in other FHV ";
+165  PROC SQL;
+166  SELECT BASE_NUMBER,BASE_NAME, SUM(NUMBER_OF_VEHICLES)AS TOTAL_VEHICLES ,SUM(NUMBER_OF_TRIPS)AS
+166! TOTAL_TRIPS
+167  from OTHER_FHV_DATA
+168  group by 1,2
+169  order by 1,2;
+170  QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.26 seconds
+      cpu time            0.20 seconds
+
+
+171
+172  TITLE "NO OF TRIPS FOR EVERY MONTH FOR EVRY BASE_NUMBERS -OTHER-FHV";
+173  PROC SQL;
+174  SELECT BASE_NUMBER,MONTH,SUM(NUMBER_OF_TRIPS)AS TOTAL_TRIPS
+175  FROM OTHER_FHV_DATA
+176  GROUP BY 1,2
+177  ORDER BY 1,2;
+178  QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.36 seconds
+      cpu time            0.34 seconds
+
+
+179
+180  TITLE "NO OF TRIPS FOR  EVERY MONTH-OTHER FHV";
+181  PROC SQL;
+182  SELECT MONTH,SUM(NUMBER_OF_TRIPS)AS TOTAL_TRIPS
+183  FROM OTHER_FHV_DATA
+184  GROUP BY 1
+185  ORDER BY 1;
+186  QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           0.06 seconds
+      cpu time            0.06 seconds
+
+
+187
+188  /***GRAPHICAL REPRESENTATION ***/
+189  TITLE "NO OF TRIPS BY MONTH";
+190  pattern1 value=L1;
+191  proc gchart data=OTHER_FHV_DATA;
+WARNING: The SAS/GRAPH product with which GCHART is associated will be expiring soon, and is
+         currently in warning mode to indicate this upcoming expiration. Please run PROC SETINIT to
+         obtain more information on your warning period.
+192  vbar MONTH / sumvar=NUMBER_OF_TRIPS
+193  type=SUM;
+194  /*group=MONTH;*/
+195  run;
+
+NOTE: 21892 bytes written to C:\Users\vaish\AppData\Local\Temp\SAS Temporary
+      Files\_TD9520_MILKYWAY_\gchart.png.
+196  quit;
+
+NOTE: There were 24465 observations read from the data set WORK.OTHER_FHV_DATA.
+NOTE: PROCEDURE GCHART used (Total process time):
+      real time           0.79 seconds
+      cpu time            0.62 seconds
+
+
+197
+198  /*********************UBER DATA ANALYSIS********************************/
+199
+200  TITLE "NO OF TRIPS FOR EACH UBER BASE ";
+201  PROC SQL;
+202  SELECT &BASE_NO AS BASE_NO,COUNT(&BASE_NO)AS TOTAL_TRIPS
+203  from UBER_DATA
+204  group by 1
+205  order by 1;
+206  QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           6.50 seconds
+      cpu time            17.56 seconds
+
+
+207
+208  /*Extracting month from the pipckup date*/
+209  data uber_data;
+210  set uber_data;
+211  Month=SUBSTR(put(Pickup_date,DATETIME16.),3,3);
+212  run;
+
+NOTE: There were 14108284 observations read from the data set WORK.UBER_DATA.
+NOTE: The data set WORK.UBER_DATA has 14108284 observations and 5 variables.
+NOTE: DATA statement used (Total process time):
+      real time           19.71 seconds
+      cpu time            19.59 seconds
+
+
+213
+214  TITLE"NUMBER OF TRIPS FOR EVERY MONTH-UBER";
+215  PROC SQL;
+216  SELECT MONTH AS MONTH,COUNT(&BASE_NO)AS TOTAL_TRIPS
+217  FROM UBER_DATA
+218  GROUP BY 1
+219  ORDER BY 1 ASC;
+220  QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           7.28 seconds
+      cpu time            16.23 seconds
+
+
+221
+222  TITLE"NUMBER OF TRIPS FOR EVERY LOCATION-UBER";
+223  PROC SQL;
+224  SELECT &LOC AS LOCATION_ID,COUNT(&BASE_NO)AS TOTAL_TRIPS
+225  FROM UBER_DATA
+226  GROUP BY 1
+227  ORDER BY 1 ASC;
+228  QUIT;
+NOTE: PROCEDURE SQL used (Total process time):
+      real time           8.18 seconds
+      cpu time            23.34 seconds
+
+
